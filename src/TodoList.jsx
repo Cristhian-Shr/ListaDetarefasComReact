@@ -1,10 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./TodoList.css";
 import Icone from "./assets/img/imgListaTarefas.png";
 
 function TodoList() {
-  const [lista, setLista] = useState([]);
+  const listaStorage = localStorage.getItem("Lista");
+
+  const [lista, setLista] = useState(
+    listaStorage ? JSON.parse(listaStorage) : []
+  );
   const [novoItem, setNovoItem] = useState("");
+
+  useEffect(() => {
+    localStorage.setItem("Lista", JSON.stringify(lista));
+  }, [lista]);
 
   function adicionaItem(form) {
     form.preventDefault();
@@ -26,6 +34,10 @@ function TodoList() {
     const listaAux = [...lista];
     listaAux.splice(index, 1);
     setLista(listaAux);
+  }
+
+  function deletaTudo() {
+    setLista([]);
   }
 
   return (
@@ -73,7 +85,16 @@ function TodoList() {
               </div>
             ))
           )}
-          <button className="delALL">All Delet</button>
+          {lista.length > 0 && (
+            <button
+              onClick={() => {
+                deletaTudo();
+              }}
+              className="delALL"
+            >
+              All Delet
+            </button>
+          )}
         </div>
       </div>
     </div>
