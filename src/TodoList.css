@@ -133,6 +133,10 @@ button.delALL:hover {
   color: #fff;
 }
 
+.icone-central {
+  max-width: 100%;
+}
+
 @media screnn and (max-width: 900px) {
   form {
     width: 100%;
