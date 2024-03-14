@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import "./TodoList.css";
 
 function TodoList() {
+  const [lista, setLista] = useState([]);
+
   return (
     <div>
       <h1>Lista de Tarefas</h1>
@@ -20,7 +22,7 @@ function TodoList() {
           <span>Tarefa de exemplo</span>
           <button className="del">Deletar</button>
         </div>
-        <button className="delALL">Al Delet</button>
+        <button className="delALL">All Delet</button>
       </div>
     </div>
   );
